@@ -1,0 +1,34 @@
+running develop
+running egg_info
+creating autonomous_explorer.egg-info
+writing autonomous_explorer.egg-info/PKG-INFO
+writing dependency_links to autonomous_explorer.egg-info/dependency_links.txt
+writing entry points to autonomous_explorer.egg-info/entry_points.txt
+writing requirements to autonomous_explorer.egg-info/requires.txt
+writing top-level names to autonomous_explorer.egg-info/top_level.txt
+writing manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+reading manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+writing manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous-explorer.egg-link (link to .)
+Installing teleop_control script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+
+Installed /home/sanket/robot_mapping_ws/build/autonomous_explorer
+running symlink_data
+creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/ament_index
+creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/ament_index/resource_index
+creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/ament_index/resource_index/packages
+symbolically linking /home/sanket/robot_mapping_ws/build/autonomous_explorer/resource/autonomous_explorer -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/ament_index/resource_index/packages
+symbolically linking /home/sanket/robot_mapping_ws/build/autonomous_explorer/package.xml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer
+creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/launch
+symbolically linking /home/sanket/robot_mapping_ws/build/autonomous_explorer/launch/gazebo_sim.launch.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/launch
+symbolically linking /home/sanket/robot_mapping_ws/build/autonomous_explorer/launch/slam_mapping.launch.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/launch
+creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/urdf
+symbolically linking /home/sanket/robot_mapping_ws/build/autonomous_explorer/urdf/explorer_bot.urdf.xacro -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/urdf
+creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/worlds
+symbolically linking /home/sanket/robot_mapping_ws/build/autonomous_explorer/worlds/office_world.world -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/worlds
+creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config
+symbolically linking /home/sanket/robot_mapping_ws/build/autonomous_explorer/config/slam_toolbox.yaml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config
+creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/rviz
+symbolically linking /home/sanket/robot_mapping_ws/build/autonomous_explorer/rviz/mapping.rviz -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/rviz
+creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/maps

@@ -1,0 +1,63 @@
+from setuptools import setup
+import os
+from glob import glob
+
+package_name = 'autonomous_explorer'
+
+setup(
+    name=package_name,
+    version='0.0.1',
+    packages=[package_name],
+    data_files=[
+        ('share/ament_index/resource_index/packages',
+            ['resource/' + package_name]),
+        ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
+        (os.path.join('share', package_name, 'urdf'), glob('urdf/*')),
+        (os.path.join('share', package_name, 'worlds'), glob('worlds/*.world')),
+        (os.path.join('share', package_name, 'config'), glob('config/*.yaml')),
+        (os.path.join('share', package_name, 'config', 'navigation'), glob('config/navigation/*.yaml')),
+        (os.path.join('share', package_name, 'behavior_trees'), glob('behavior_trees/*.xml')),
+        (os.path.join('share', package_name, 'rviz'), glob('rviz/*.rviz')),
+        (os.path.join('share', package_name, 'maps'), glob('maps/*')),
+    ],
+    install_requires=['setuptools'],
+    zip_safe=True,
+    maintainer='your_name',
+    maintainer_email='your_email@example.com',
+    description='Autonomous Explorer Robot with SLAM',
+    license='Apache License 2.0',
+    tests_require=['pytest'],
+    entry_points={
+        'console_scripts': [
+            'teleop_control = autonomous_explorer.teleop_control:main',
+            'autonomous_explorer_node = autonomous_explorer.autonomous_explorer_node:main',
+            'simple_goal_follower = autonomous_explorer.simple_goal_follower:main',
+        ],
+    },
+)
+
+
+# Claude - Face recognition project on jetson nano
+
+# Map Save cmd 
+# cd ~/robot_mapping_ws/src/autonomous_explorer/maps
+# ros2 run nav2_map_server map_saver_cli -f office_map
+
+
+# Robot control cmd 
+# cd ~/robot_mapping_ws
+# source install/setup.bash
+# ros2 run autonomous_explorer teleop_control
+
+
+
+
+
+# Mapping and RVIz
+# ros2 launch autonomous_explorer slam_mapping.launch.py
+
+
+# Gazebo Simulation 
+# ros2 launch autonomous_explorer gazebo_sim.launch.py
+ 

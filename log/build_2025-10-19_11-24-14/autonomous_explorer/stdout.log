@@ -1,0 +1,21 @@
+running develop
+running egg_info
+writing autonomous_explorer.egg-info/PKG-INFO
+writing dependency_links to autonomous_explorer.egg-info/dependency_links.txt
+writing entry points to autonomous_explorer.egg-info/entry_points.txt
+writing requirements to autonomous_explorer.egg-info/requires.txt
+writing top-level names to autonomous_explorer.egg-info/top_level.txt
+reading manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+writing manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous-explorer.egg-link (link to .)
+Installing autonomous_explorer_node script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+Installing teleop_control script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+
+Installed /home/sanket/robot_mapping_ws/build/autonomous_explorer
+running symlink_data
+creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config/navigation
+symbolically linking /home/sanket/robot_mapping_ws/build/autonomous_explorer/config/navigation/planner.yaml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config/navigation
+symbolically linking /home/sanket/robot_mapping_ws/build/autonomous_explorer/config/navigation/local_costmap.yaml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config/navigation
+symbolically linking /home/sanket/robot_mapping_ws/build/autonomous_explorer/config/navigation/controller.yaml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config/navigation
+symbolically linking /home/sanket/robot_mapping_ws/build/autonomous_explorer/config/navigation/global_costmap.yaml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config/navigation

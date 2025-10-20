@@ -1,0 +1,20 @@
+[0.965s] Invoking command in '/home/sanket/robot_mapping_ws/build/autonomous_explorer': PYTHONPATH=/home/sanket/robot_mapping_ws/build/autonomous_explorer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sanket/robot_mapping_ws/build/autonomous_explorer/build --no-deps symlink_data
+[1.289s] running develop
+[1.512s] running egg_info
+[1.512s] writing autonomous_explorer.egg-info/PKG-INFO
+[1.513s] writing dependency_links to autonomous_explorer.egg-info/dependency_links.txt
+[1.513s] writing entry points to autonomous_explorer.egg-info/entry_points.txt
+[1.513s] writing requirements to autonomous_explorer.egg-info/requires.txt
+[1.513s] writing top-level names to autonomous_explorer.egg-info/top_level.txt
+[1.522s] reading manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+[1.523s] writing manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+[1.524s] running build_ext
+[1.525s] Creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous-explorer.egg-link (link to .)
+[1.525s] Installing autonomous_explorer_node script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.526s] Installing simple_goal_follower script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.526s] Installing teleop_control script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.526s] 
+[1.526s] Installed /home/sanket/robot_mapping_ws/build/autonomous_explorer
+[1.526s] running symlink_data
+[1.527s] creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/behavior_trees
+[1.568s] Invoked command in '/home/sanket/robot_mapping_ws/build/autonomous_explorer' returned '0': PYTHONPATH=/home/sanket/robot_mapping_ws/build/autonomous_explorer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sanket/robot_mapping_ws/build/autonomous_explorer/build --no-deps symlink_data

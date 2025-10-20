@@ -1,0 +1,5 @@
+[console_scripts]
+autonomous_explorer_node = autonomous_explorer.autonomous_explorer_node:main
+simple_goal_follower = autonomous_explorer.simple_goal_follower:main
+teleop_control = autonomous_explorer.teleop_control:main
+
