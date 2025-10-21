@@ -3,6 +3,7 @@ setup.cfg
 setup.py
 autonomous_explorer/__init__.py
 autonomous_explorer/autonomous_explorer_node.py
+autonomous_explorer/goal_publisher.py
 autonomous_explorer/simple_goal_follower.py
 autonomous_explorer/teleop_control.py
 autonomous_explorer.egg-info/PKG-INFO
@@ -19,10 +20,14 @@ config/navigation/local_costmap.yaml
 config/navigation/planner.yaml
 launch/autonomous_exploration.launch.py
 launch/gazebo_sim.launch.py
+launch/navigation.launch.py
 launch/slam_mapping.launch.py
+maps/my_office_map.pgm
+maps/my_office_map.yaml
 maps/office_map.pgm
 maps/office_map.yaml
 resource/autonomous_explorer
 rviz/mapping.rviz
+rviz/navigation.rviz
 urdf/explorer_bot.urdf.xacro
 worlds/office_world.world

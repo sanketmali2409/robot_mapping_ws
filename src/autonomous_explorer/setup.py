@@ -33,6 +33,7 @@ setup(
             'teleop_control = autonomous_explorer.teleop_control:main',
             'autonomous_explorer_node = autonomous_explorer.autonomous_explorer_node:main',
             'simple_goal_follower = autonomous_explorer.simple_goal_follower:main',
+            'goal_publisher = autonomous_explorer.goal_publisher:main',
         ],
     },
 )
@@ -61,3 +62,31 @@ setup(
 # Gazebo Simulation 
 # ros2 launch autonomous_explorer gazebo_sim.launch.py
  
+
+# Map create 
+
+ # Terminal 1: Gazebo
+#ros2 launch autonomous_explorer gazebo_sim.launch.py
+
+# # Terminal 2: SLAM
+# ros2 launch autonomous_explorer slam_mapping.launch.py
+
+# # Terminal 3: Manual control
+# ros2 run autonomous_explorer teleop_control
+
+
+# Save map
+
+
+# cd ~/robot_mapping_ws/src/autonomous_explorer/maps
+# ros2 run nav2_map_server map_saver_cli -f my_office_map
+
+
+# Goal 
+
+
+# # Terminal 1: Gazebo (spawn robot at initial position)
+# ros2 launch autonomous_explorer gazebo_sim.launch.py
+
+# # Terminal 2: Navigation (loads saved map)
+# ros2 launch autonomous_explorer navigation.launch.py
