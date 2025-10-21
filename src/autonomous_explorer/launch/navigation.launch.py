@@ -5,7 +5,7 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     
-    pkg_share = get_package_share_directory('Autonomous_explorer')
+    pkg_share = get_package_share_directory('autonomous_explorer')
     
     # Map file
     map_file = os.path.join(pkg_share, 'maps', 'my_office_map.yaml')
