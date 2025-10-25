@@ -1,1 +1,101 @@
-/home/sanket/robot_mapping_ws/build/autonomous_explorer/rviz/mapping.rviz
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+    Property Tree Widget:
+      Expanded: ~
+      Splitter Ratio: 0.5
+  - Class: rviz_common/Views
+    Name: Views
+    Expanded:
+      - /Current View1
+
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Reference Frame: map
+      Plane Cell Count: 50
+      Cell Size: 1.0
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+      Marker Scale: 0.3
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Update Interval: 0.0
+      Frame Timeout: 15.0
+      Frames:
+        All Enabled: true
+      
+    - Class: rviz_default_plugins/RobotModel
+      Name: RobotModel
+      Description Topic:
+        Value: /robot_description
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+      Visual Enabled: true
+      Collision Enabled: false
+      Alpha: 1.0
+      Enabled: true
+      
+    - Class: rviz_default_plugins/LaserScan
+      Name: LaserScan
+      Topic:
+        Value: /scan
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+      Size: 0.05
+      Color: 255; 0; 0
+      Decay Time: 0.0
+      Enabled: true
+      Use Fixed Frame: true
+      Use Rainbow: true
+      
+    - Class: rviz_default_plugins/Map
+      Name: Map
+      Topic:
+        Value: /map
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+      Color Scheme: map
+      Draw Behind: false
+      Alpha: 0.7
+      Enabled: true
+      Update Topic:
+        Value: /map_updates
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+      
+  Views:
+    Current:
+      Class: rviz_default_plugins/TopDownOrtho
+      Name: TopDownOrtho
+      Target Frame: map
+      Scale: 20.0
+      X: 0.0
+      Y: 0.0
+      
+Global Options:
+  Fixed Frame: map

@@ -1,0 +1,76 @@
+[0.627s] Invoking command in '/home/sanket/robot_mapping_ws/build/autonomous_explorer': PYTHONPATH=/home/sanket/robot_mapping_ws/build/autonomous_explorer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/sanket/robot_mapping_ws/build/autonomous_explorer/build
+[0.839s] running develop
+[0.988s] Removing /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous-explorer.egg-link (link to .)
+[1.021s] Invoked command in '/home/sanket/robot_mapping_ws/build/autonomous_explorer' returned '0': PYTHONPATH=/home/sanket/robot_mapping_ws/build/autonomous_explorer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/sanket/robot_mapping_ws/build/autonomous_explorer/build
+[1.021s] Invoking command in '/home/sanket/robot_mapping_ws/src/autonomous_explorer': PYTHONPATH=/home/sanket/robot_mapping_ws/build/autonomous_explorer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/autonomous_explorer build --build-base /home/sanket/robot_mapping_ws/build/autonomous_explorer/build install --record /home/sanket/robot_mapping_ws/build/autonomous_explorer/install.log --single-version-externally-managed install_data --force
+[1.235s] running egg_info
+[1.236s] writing ../../build/autonomous_explorer/autonomous_explorer.egg-info/PKG-INFO
+[1.236s] writing dependency_links to ../../build/autonomous_explorer/autonomous_explorer.egg-info/dependency_links.txt
+[1.236s] writing entry points to ../../build/autonomous_explorer/autonomous_explorer.egg-info/entry_points.txt
+[1.236s] writing requirements to ../../build/autonomous_explorer/autonomous_explorer.egg-info/requires.txt
+[1.236s] writing top-level names to ../../build/autonomous_explorer/autonomous_explorer.egg-info/top_level.txt
+[1.243s] reading manifest file '../../build/autonomous_explorer/autonomous_explorer.egg-info/SOURCES.txt'
+[1.244s] writing manifest file '../../build/autonomous_explorer/autonomous_explorer.egg-info/SOURCES.txt'
+[1.244s] running build
+[1.244s] running build_py
+[1.244s] creating /home/sanket/robot_mapping_ws/build/autonomous_explorer/build
+[1.244s] creating /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib
+[1.244s] creating /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer
+[1.244s] copying autonomous_explorer/teleop_control.py -> /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer
+[1.244s] copying autonomous_explorer/autonomous_explorer_node.py -> /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer
+[1.244s] copying autonomous_explorer/coverage_explorer.py -> /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer
+[1.244s] copying autonomous_explorer/web_control_node.py -> /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer
+[1.244s] copying autonomous_explorer/__init__.py -> /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer
+[1.245s] copying autonomous_explorer/goal_publisher.py -> /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer
+[1.245s] copying autonomous_explorer/simple_goal_follower.py -> /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer
+[1.245s] running install
+[1.245s] running install_lib
+[1.245s] creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer
+[1.245s] copying /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer/teleop_control.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer
+[1.245s] copying /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer/autonomous_explorer_node.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer
+[1.245s] copying /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer/coverage_explorer.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer
+[1.246s] copying /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer/web_control_node.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer
+[1.246s] copying /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer/__init__.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer
+[1.246s] copying /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer/goal_publisher.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer
+[1.246s] copying /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer/simple_goal_follower.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer
+[1.246s] byte-compiling /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/teleop_control.py to teleop_control.cpython-310.pyc
+[1.247s] byte-compiling /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/autonomous_explorer_node.py to autonomous_explorer_node.cpython-310.pyc
+[1.249s] byte-compiling /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/coverage_explorer.py to coverage_explorer.cpython-310.pyc
+[1.249s] byte-compiling /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/web_control_node.py to web_control_node.cpython-310.pyc
+[1.250s] byte-compiling /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/__init__.py to __init__.cpython-310.pyc
+[1.250s] byte-compiling /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/goal_publisher.py to goal_publisher.cpython-310.pyc
+[1.250s] byte-compiling /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/simple_goal_follower.py to simple_goal_follower.cpython-310.pyc
+[1.251s] running install_data
+[1.251s] copying resource/autonomous_explorer -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/ament_index/resource_index/packages
+[1.251s] copying package.xml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer
+[1.251s] copying launch/web_control.launch.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/launch
+[1.251s] copying launch/autonomous_exploration.launch.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/launch
+[1.251s] copying launch/gazebo_sim.launch.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/launch
+[1.251s] copying launch/slam_mapping.launch.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/launch
+[1.251s] copying launch/navigation.launch.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/launch
+[1.251s] copying urdf/explorer_bot.urdf.xacro -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/urdf
+[1.251s] copying worlds/office_world.world -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/worlds
+[1.251s] copying config/slam_toolbox.yaml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config
+[1.252s] copying config/navigation/planner.yaml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config/navigation
+[1.252s] copying config/navigation/local_costmap.yaml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config/navigation
+[1.252s] copying config/navigation/controller.yaml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config/navigation
+[1.252s] copying config/navigation/global_costmap.yaml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config/navigation
+[1.252s] copying rviz/mapping.rviz -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/rviz
+[1.252s] copying rviz/navigation.rviz -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/rviz
+[1.252s] copying maps/office_map.pgm -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/maps
+[1.252s] copying maps/office_map.yaml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/maps
+[1.252s] copying maps/my_office_map.pgm -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/maps
+[1.253s] copying maps/my_office_map.yaml -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/maps
+[1.253s] creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/www
+[1.253s] copying www/index.html -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/www
+[1.253s] running install_egg_info
+[1.255s] Copying ../../build/autonomous_explorer/autonomous_explorer.egg-info to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer-0.0.1-py3.10.egg-info
+[1.256s] running install_scripts
+[1.272s] Installing autonomous_explorer_node script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.272s] Installing coverage_explorer script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.272s] Installing goal_publisher script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.272s] Installing simple_goal_follower script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.272s] Installing teleop_control script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.272s] Installing web_control_node script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.273s] writing list of installed files to '/home/sanket/robot_mapping_ws/build/autonomous_explorer/install.log'
+[1.300s] Invoked command in '/home/sanket/robot_mapping_ws/src/autonomous_explorer' returned '0': PYTHONPATH=/home/sanket/robot_mapping_ws/build/autonomous_explorer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/autonomous_explorer build --build-base /home/sanket/robot_mapping_ws/build/autonomous_explorer/build install --record /home/sanket/robot_mapping_ws/build/autonomous_explorer/install.log --single-version-externally-managed install_data --force

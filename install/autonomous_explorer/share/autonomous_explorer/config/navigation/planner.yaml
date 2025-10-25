@@ -1,1 +1,11 @@
-/home/sanket/robot_mapping_ws/build/autonomous_explorer/config/navigation/planner.yaml
+planner_server:
+  ros__parameters:
+    expected_planner_frequency: 20.0
+    use_sim_time: True
+    planner_plugins: ["GridBased"]
+    GridBased:
+      plugin: "nav2_navfn_planner::NavfnPlanner"
+      tolerance: 0.5
+      use_astar: false
+      allow_unknown: true
+

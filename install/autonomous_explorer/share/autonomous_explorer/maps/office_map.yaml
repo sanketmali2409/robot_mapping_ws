@@ -1,1 +1,7 @@
-/home/sanket/robot_mapping_ws/build/autonomous_explorer/maps/office_map.yaml
+image: office_map.pgm
+mode: trinary
+resolution: 0.05
+origin: [-4.94, -4.94, 0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.25
