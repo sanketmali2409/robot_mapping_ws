@@ -123,7 +123,7 @@ class WebControlNode(Node):
             self.ws_clients.discard(websocket)
             self.get_logger().info('Client disconnected')
     
-    def send_navigation_goal(self, x, y):
+    def send_navigation_goal(self, x, y, theta=0.0):
         """Send navigation goal using Nav2 action"""
         if not self.nav_to_pose_client.wait_for_server(timeout_sec=1.0):
             self.get_logger().warn('Nav2 action server not available!')
@@ -135,11 +135,33 @@ class WebControlNode(Node):
         goal_msg.pose.pose.position.x = x
         goal_msg.pose.pose.position.y = y
         goal_msg.pose.pose.position.z = 0.0
-        goal_msg.pose.pose.orientation.w = 1.0
+        
+        # Convert theta to quaternion
+        goal_msg.pose.pose.orientation.z = np.sin(theta / 2.0)
+        goal_msg.pose.pose.orientation.w = np.cos(theta / 2.0)
         
         self.nav_to_pose_client.send_goal_async(goal_msg)
-        self.get_logger().info(f'Navigation goal sent: ({x:.2f}, {y:.2f})')
+        self.get_logger().info(f'Navigation goal sent: ({x:.2f}, {y:.2f}, {theta:.2f}°)')
         return True
+    
+    def start_exploration(self, area_name):
+        """Start simple exploration pattern"""
+        # Send robot in a square pattern to explore
+        waypoints = [
+            (2.0, 2.0, 0.0),
+            (2.0, -2.0, -1.57),
+            (-2.0, -2.0, 3.14),
+            (-2.0, 2.0, 1.57),
+            (0.0, 0.0, 0.0)  # Return to start
+        ]
+        
+        self.get_logger().info(f'Starting exploration pattern with {len(waypoints)} waypoints')
+        
+        # Send first waypoint
+        if waypoints:
+            x, y, theta = waypoints[0]
+            return self.send_navigation_goal(x, y, theta)
+        return False
     
     async def handle_message(self, websocket, message):
         try:
@@ -192,9 +214,34 @@ class WebControlNode(Node):
             
             elif command == 'explore_area':
                 area_name = data.get('area', 'default')
-                self.get_logger().info(f'✓ Exploration request received: {area_name}')
-                self.get_logger().info(f'Note: Load map "{area_name}" in navigation launch for best results')
-                await websocket.send(json.dumps({'status': 'exploration_started', 'area': area_name}))
+                map_path = os.path.join(self.map_dir, f'{area_name}.yaml')
+                
+                if os.path.exists(map_path):
+                    self.get_logger().info(f'✓ Starting exploration of: {area_name}')
+                    
+                    # Send robot to explore - send multiple waypoints
+                    # For now, send a simple exploration pattern
+                    if self.send_navigation_goal(2.0, 2.0):
+                        await websocket.send(json.dumps({
+                            'status': 'exploration_started', 
+                            'area': area_name,
+                            'message': 'Robot moving to exploration waypoint'
+                        }))
+                        self.get_logger().info(f'✓ Robot navigating in {area_name}')
+                    else:
+                        await websocket.send(json.dumps({
+                            'status': 'exploration_failed',
+                            'area': area_name,
+                            'message': 'Nav2 not ready. Make sure navigation.launch.py is running!'
+                        }))
+                        self.get_logger().error('✗ Navigation not available - is navigation.launch.py running?')
+                else:
+                    await websocket.send(json.dumps({
+                        'status': 'exploration_failed',
+                        'area': area_name,
+                        'message': f'Map not found: {area_name}'
+                    }))
+                    self.get_logger().warn(f'✗ Map not found: {map_path}')
             
             elif command == 'stop_robot':
                 twist = Twist()

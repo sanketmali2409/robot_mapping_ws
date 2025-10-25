@@ -27,7 +27,7 @@
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config/navigation/local_costmap.yaml
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config/navigation/controller.yaml
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/config/navigation/global_costmap.yaml
-/home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/behavior_trees
+/home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/behavior_trees/navigate_to_pose.xml
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/rviz/mapping.rviz
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/rviz/navigation.rviz
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/maps/office_map.pgm

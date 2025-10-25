@@ -8,6 +8,10 @@ bt_navigator:
     odom_topic: /odom
     bt_loop_duration: 10
     default_server_timeout: 20
+    # ADD THESE TWO LINES ↓
+    default_nav_to_pose_bt_xml: /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/behavior_trees/navigate_to_pose.xml
+    default_nav_through_poses_bt_xml: /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/behavior_trees/navigate_to_pose.xml
+    # END OF ADDED LINES ↑
     enable_groot_monitoring: True
     groot_zmq_publisher_port: 1666
     groot_zmq_server_port: 1667

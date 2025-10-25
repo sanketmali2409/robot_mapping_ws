@@ -15,6 +15,7 @@ autonomous_explorer/goal_publisher.py
 autonomous_explorer/simple_goal_follower.py
 autonomous_explorer/teleop_control.py
 autonomous_explorer/web_control_node.py
+behavior_trees/navigate_to_pose.xml
 config/slam_toolbox.yaml
 config/navigation/controller.yaml
 config/navigation/global_costmap.yaml
