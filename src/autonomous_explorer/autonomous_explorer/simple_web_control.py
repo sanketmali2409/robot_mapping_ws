@@ -94,7 +94,8 @@ class SimpleWebControl(Node):
             #             time.sleep(0.5)  # Small delay between goals
             #         else:
             #             await websocket.send(json.dumps({'status': 'nav_failed'}))
-            #             break
+            #  
+            #            break
             if command == 'explore_area':
                 # Get current position
                 x = self.current_pose['x']
@@ -114,7 +115,8 @@ class SimpleWebControl(Node):
                         'message': 'Robot moving 0.5m forward'
                     }))
                 else:
-                    await websocket.send(json.dumps({'status': 'nav_failed'}))
+                        await websocket.send(json.dumps({'status': 'nav_failed'}))
+                        
                     
             
             elif command == 'stop_robot':
