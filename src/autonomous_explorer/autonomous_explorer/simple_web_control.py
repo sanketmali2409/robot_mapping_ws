@@ -115,7 +115,7 @@ class SimpleWebControl(Node):
                         'message': 'Robot moving 0.5m forward'
                     }))
                 else:
-                        await websocket.send(json.dumps({'status': 'nav_failed'}))
+                    await websocket.send(json.dumps({'status': 'nav_failed'}))
                         
                     
             
