@@ -125,25 +125,9 @@ class WebControlNode(Node):
     
     def send_navigation_goal(self, x, y, theta=0.0):
         """Send navigation goal using Nav2 action"""
-        # Wait longer for action server (30 seconds)
-        self.get_logger().info('Checking if Nav2 action server is available...')
-        
-        if not self.nav_to_pose_client.wait_for_server(timeout_sec=5.0):
-            self.get_logger().error('Nav2 action server not available after 5 seconds!')
-            self.get_logger().error('Make sure navigation.launch.py is running and bt_navigator is active')
-            
-            # Try to check if bt_navigator node exists
-            import subprocess
-            result = subprocess.run(['ros2', 'node', 'list'], capture_output=True, text=True)
-            if '/bt_navigator' in result.stdout:
-                self.get_logger().warn('bt_navigator node exists but action server not responding')
-                self.get_logger().warn('Try: ros2 lifecycle set /bt_navigator activate')
-            else:
-                self.get_logger().error('bt_navigator node not found! Navigation stack not running!')
-            
+        if not self.nav_to_pose_client.wait_for_server(timeout_sec=1.0):
+            self.get_logger().warn('Nav2 action server not available!')
             return False
-        
-        self.get_logger().info('✓ Nav2 action server is available!')
         
         goal_msg = NavigateToPose.Goal()
         goal_msg.pose.header.frame_id = 'map'
@@ -156,20 +140,29 @@ class WebControlNode(Node):
         goal_msg.pose.pose.orientation.z = np.sin(theta / 2.0)
         goal_msg.pose.pose.orientation.w = np.cos(theta / 2.0)
         
-        self.get_logger().info(f'Sending navigation goal: ({x:.2f}, {y:.2f}, {theta:.2f}°)')
-        future = self.nav_to_pose_client.send_goal_async(goal_msg)
-        self.get_logger().info('Navigation goal sent successfully!')
+        self.nav_to_pose_client.send_goal_async(goal_msg)
+        self.get_logger().info(f'Navigation goal sent: ({x:.2f}, {y:.2f}, {theta:.2f}°)')
         return True
     
     def start_exploration(self, area_name):
-        """Move robot forward 0.5 meters"""
-        current_x = self.current_pose['x']
-        current_y = self.current_pose['y']
-        goal_x = current_x + 0.5
-        goal_y = current_y
-        self.get_logger().info(f'Robot at: ({current_x:.2f}, {current_y:.2f}) -> Goal: ({goal_x:.2f}, {goal_y:.2f})')
-        return self.send_navigation_goal(goal_x, goal_y, 0.0)
+        """Start simple exploration pattern"""
+        # Send robot in a square pattern to explore
+        waypoints = [
+            (2.0, 2.0, 0.0),
+            (2.0, -2.0, -1.57),
+            (-2.0, -2.0, 3.14),
+            (-2.0, 2.0, 1.57),
+            (0.0, 0.0, 0.0)  # Return to start
+        ]
         
+        self.get_logger().info(f'Starting exploration pattern with {len(waypoints)} waypoints')
+        
+        # Send first waypoint
+        if waypoints:
+            x, y, theta = waypoints[0]
+            return self.send_navigation_goal(x, y, theta)
+        return False
+    
     async def handle_message(self, websocket, message):
         try:
             data = json.loads(message)
@@ -226,14 +219,15 @@ class WebControlNode(Node):
                 if os.path.exists(map_path):
                     self.get_logger().info(f'✓ Starting exploration of: {area_name}')
                     
-                    # Start exploration pattern
-                    if self.start_exploration(area_name):
+                    # Send robot to explore - send multiple waypoints
+                    # For now, send a simple exploration pattern
+                    if self.send_navigation_goal(2.0, 2.0):
                         await websocket.send(json.dumps({
                             'status': 'exploration_started', 
                             'area': area_name,
-                            'message': 'Robot exploring area in pattern'
+                            'message': 'Robot moving to exploration waypoint'
                         }))
-                        self.get_logger().info(f'✓ Robot exploring {area_name}')
+                        self.get_logger().info(f'✓ Robot navigating in {area_name}')
                     else:
                         await websocket.send(json.dumps({
                             'status': 'exploration_failed',

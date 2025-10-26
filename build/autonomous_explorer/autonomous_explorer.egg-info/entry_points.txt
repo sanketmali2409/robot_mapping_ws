@@ -3,6 +3,7 @@ autonomous_explorer_node = autonomous_explorer.autonomous_explorer_node:main
 coverage_explorer = autonomous_explorer.coverage_explorer:main
 goal_publisher = autonomous_explorer.goal_publisher:main
 simple_goal_follower = autonomous_explorer.simple_goal_follower:main
+simple_web = autonomous_explorer.simple_web_control:main
 teleop_control = autonomous_explorer.teleop_control:main
 web_control_node = autonomous_explorer.web_control_node:main
 

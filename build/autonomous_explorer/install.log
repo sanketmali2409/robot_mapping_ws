@@ -1,3 +1,4 @@
+/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/simple_web_control.py
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/teleop_control.py
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/autonomous_explorer_node.py
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/coverage_explorer.py
@@ -5,6 +6,7 @@
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/__init__.py
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/goal_publisher.py
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/simple_goal_follower.py
+/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/__pycache__/simple_web_control.cpython-310.pyc
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/__pycache__/teleop_control.cpython-310.pyc
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/__pycache__/autonomous_explorer_node.cpython-310.pyc
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/__pycache__/coverage_explorer.cpython-310.pyc
@@ -50,5 +52,6 @@
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer/coverage_explorer
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer/goal_publisher
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer/simple_goal_follower
+/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer/simple_web
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer/teleop_control
 /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer/web_control_node

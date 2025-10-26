@@ -13,6 +13,7 @@ autonomous_explorer/autonomous_explorer_node.py
 autonomous_explorer/coverage_explorer.py
 autonomous_explorer/goal_publisher.py
 autonomous_explorer/simple_goal_follower.py
+autonomous_explorer/simple_web_control.py
 autonomous_explorer/teleop_control.py
 autonomous_explorer/web_control_node.py
 behavior_trees/navigate_to_pose.xml

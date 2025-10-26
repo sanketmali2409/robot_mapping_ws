@@ -145,23 +145,17 @@ class WebControlNode(Node):
         return True
     
     def start_exploration(self, area_name):
-        """Start simple exploration pattern"""
-        # Send robot in a square pattern to explore
-        waypoints = [
-            (2.0, 2.0, 0.0),
-            (2.0, -2.0, -1.57),
-            (-2.0, -2.0, 3.14),
-            (-2.0, 2.0, 1.57),
-            (0.0, 0.0, 0.0)  # Return to start
-        ]
+        """Start simple exploration - move 0.5m forward"""
+        current_x = self.current_pose['x']
+        current_y = self.current_pose['y']
         
-        self.get_logger().info(f'Starting exploration pattern with {len(waypoints)} waypoints')
+        goal_x = current_x + 0.5
+        goal_y = current_y
         
-        # Send first waypoint
-        if waypoints:
-            x, y, theta = waypoints[0]
-            return self.send_navigation_goal(x, y, theta)
-        return False
+        self.get_logger().info(f'Robot at: ({current_x:.2f}, {current_y:.2f}) -> Goal: ({goal_x:.2f}, {goal_y:.2f})')
+        
+        return self.send_navigation_goal(goal_x, goal_y, 0.0)
+    
     
     async def handle_message(self, websocket, message):
         try:

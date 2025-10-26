@@ -98,6 +98,7 @@ setup(
             # Add new web control nodes
             'web_control_node = autonomous_explorer.web_control_node:main',
             'coverage_explorer = autonomous_explorer.coverage_explorer:main',
+            'simple_web = autonomous_explorer.simple_web_control:main',
         ],
     },
 )
