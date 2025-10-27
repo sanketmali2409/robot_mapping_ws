@@ -15,7 +15,7 @@ import time
 
 class SimpleWebControl(Node):
     def __init__(self):
-        super().__init__('Simple_web_control')
+        super().__init__('simple_web_control')
         
         self.odom_sub = self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
         self.cmd_vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
