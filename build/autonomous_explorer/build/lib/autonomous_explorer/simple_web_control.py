@@ -67,34 +67,51 @@ class SimpleWebControl(Node):
             data = json.loads(message)
             command = data.get('command')
             
+            # if command == 'explore_area':
+            #     # Get current position
+            #     x = self.current_pose['x']
+            #     y = self.current_pose['y']
+                
+            #     self.get_logger().info(f'Starting circular exploration from ({x:.2f}, {y:.2f})')
+                
+            #     # Send circular pattern goals
+            #     radius = 1.0  # 1 meter radius
+            #     num_points = 8
+                
+            #     for i in range(num_points):
+            #         angle = 2 * np.pi * i / num_points
+            #         goal_x = x + radius * np.cos(angle)
+            #         goal_y = y + radius * np.sin(angle)
+                    
+            #         self.get_logger().info(f'Goal {i+1}/{num_points}: ({goal_x:.2f}, {goal_y:.2f})')
+                    
+            #         if self.send_goal(goal_x, goal_y):
+            #             await websocket.send(json.dumps({
+            #                 'status': 'navigation_started',
+            #                 'goal': i+1,
+            #                 'total': num_points
+            #             }))
+            #             time.sleep(0.5)  # Small delay between goals
+            #         else:
+            #             await websocket.send(json.dumps({'status': 'nav_failed'}))
+            #  
+            #            break
             if command == 'explore_area':
-                # Get current position
+                # Just move forward 0.5m
                 x = self.current_pose['x']
                 y = self.current_pose['y']
                 
-                self.get_logger().info(f'Starting circular exploration from ({x:.2f}, {y:.2f})')
+                goal_x = x + 0.5
+                goal_y = y
                 
-                # Send circular pattern goals
-                radius = 1.0  # 1 meter radius
-                num_points = 8
+                self.get_logger().info(f'Moving forward from ({x:.2f}, {y:.2f}) to ({goal_x:.2f}, {goal_y:.2f})')
                 
-                for i in range(num_points):
-                    angle = 2 * np.pi * i / num_points
-                    goal_x = x + radius * np.cos(angle)
-                    goal_y = y + radius * np.sin(angle)
+                if self.send_goal(goal_x, goal_y):
+                    await websocket.send(json.dumps({'status': 'navigation_started'}))
+                else:
+                    await websocket.send(json.dumps({'status': 'nav_failed'}))
+                        
                     
-                    self.get_logger().info(f'Goal {i+1}/{num_points}: ({goal_x:.2f}, {goal_y:.2f})')
-                    
-                    if self.send_goal(goal_x, goal_y):
-                        await websocket.send(json.dumps({
-                            'status': 'navigation_started',
-                            'goal': i+1,
-                            'total': num_points
-                        }))
-                        time.sleep(0.5)  # Small delay between goals
-                    else:
-                        await websocket.send(json.dumps({'status': 'nav_failed'}))
-                        break
             
             elif command == 'stop_robot':
                 twist = Twist()

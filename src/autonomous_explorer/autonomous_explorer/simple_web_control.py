@@ -97,23 +97,17 @@ class SimpleWebControl(Node):
             #  
             #            break
             if command == 'explore_area':
-                # Get current position
+                # Just move forward 0.5m
                 x = self.current_pose['x']
                 y = self.current_pose['y']
                 
-                self.get_logger().info(f'Starting circular exploration from ({x:.2f}, {y:.2f})')
-                
-                # Send ONE goal at a time (just move forward first)
                 goal_x = x + 0.5
                 goal_y = y
                 
-                self.get_logger().info(f'Moving forward to: ({goal_x:.2f}, {goal_y:.2f})')
+                self.get_logger().info(f'Moving forward from ({x:.2f}, {y:.2f}) to ({goal_x:.2f}, {goal_y:.2f})')
                 
                 if self.send_goal(goal_x, goal_y):
-                    await websocket.send(json.dumps({
-                        'status': 'navigation_started',
-                        'message': 'Robot moving 0.5m forward'
-                    }))
+                    await websocket.send(json.dumps({'status': 'navigation_started'}))
                 else:
                     await websocket.send(json.dumps({'status': 'nav_failed'}))
                         
