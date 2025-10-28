@@ -101,7 +101,7 @@ class SimpleWebControl(Node):
                 x = self.current_pose['x']
                 y = self.current_pose['y']
                 
-                goal_x = x + 0.5
+                goal_x = x + 2.0
                 goal_y = y
                 
                 self.get_logger().info(f'Moving forward from ({x:.2f}, {y:.2f}) to ({goal_x:.2f}, {goal_y:.2f})')
