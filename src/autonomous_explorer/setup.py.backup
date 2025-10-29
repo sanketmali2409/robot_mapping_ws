@@ -46,8 +46,6 @@ setup(
             # Map analysis utilities
             'map_analyzer = autonomous_explorer.map_analyzer:main',
             'simple_map_analyzer = autonomous_explorer.simple_map_analyzer:main',
-            'frontier_explorer = autonomous_explorer.frontier_explorer:main',
-            'coverage_planner = autonomous_explorer.coverage_planner:main',
         ],
     },
 )

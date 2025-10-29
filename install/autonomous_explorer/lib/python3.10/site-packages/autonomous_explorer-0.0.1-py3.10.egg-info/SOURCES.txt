@@ -11,8 +11,12 @@ setup.py
 autonomous_explorer/__init__.py
 autonomous_explorer/autonomous_explorer_node.py
 autonomous_explorer/coverage_explorer.py
+autonomous_explorer/coverage_planner.py
+autonomous_explorer/frontier_explorer.py
 autonomous_explorer/goal_publisher.py
+autonomous_explorer/map_analyzer.py
 autonomous_explorer/simple_goal_follower.py
+autonomous_explorer/simple_map_analyzer.py
 autonomous_explorer/simple_web_control.py
 autonomous_explorer/teleop_control.py
 autonomous_explorer/web_control_node.py
@@ -39,6 +43,7 @@ maps/office_map.yaml
 resource/autonomous_explorer
 rviz/mapping.rviz
 rviz/navigation.rviz
+scripts/web_control_node.py
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py

@@ -1,0 +1,33 @@
+[0.777s] Invoking command in '/home/sanket/robot_mapping_ws/src/autonomous_explorer': PYTHONPATH=/home/sanket/robot_mapping_ws/build/autonomous_explorer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/autonomous_explorer build --build-base /home/sanket/robot_mapping_ws/build/autonomous_explorer/build install --record /home/sanket/robot_mapping_ws/build/autonomous_explorer/install.log --single-version-externally-managed install_data
+[1.005s] running egg_info
+[1.006s] writing ../../build/autonomous_explorer/autonomous_explorer.egg-info/PKG-INFO
+[1.011s] writing dependency_links to ../../build/autonomous_explorer/autonomous_explorer.egg-info/dependency_links.txt
+[1.011s] writing entry points to ../../build/autonomous_explorer/autonomous_explorer.egg-info/entry_points.txt
+[1.011s] writing requirements to ../../build/autonomous_explorer/autonomous_explorer.egg-info/requires.txt
+[1.011s] writing top-level names to ../../build/autonomous_explorer/autonomous_explorer.egg-info/top_level.txt
+[1.015s] reading manifest file '../../build/autonomous_explorer/autonomous_explorer.egg-info/SOURCES.txt'
+[1.016s] writing manifest file '../../build/autonomous_explorer/autonomous_explorer.egg-info/SOURCES.txt'
+[1.016s] running build
+[1.016s] running build_py
+[1.017s] copying autonomous_explorer/coverage_planner.py -> /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer
+[1.017s] running install
+[1.017s] running install_lib
+[1.018s] copying /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer/coverage_planner.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer
+[1.018s] byte-compiling /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/coverage_planner.py to coverage_planner.cpython-310.pyc
+[1.020s] running install_data
+[1.021s] running install_egg_info
+[1.023s] removing '/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer-0.0.1-py3.10.egg-info' (and everything under it)
+[1.023s] Copying ../../build/autonomous_explorer/autonomous_explorer.egg-info to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer-0.0.1-py3.10.egg-info
+[1.024s] running install_scripts
+[1.042s] Installing autonomous_explorer_node script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.043s] Installing coverage_explorer script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.043s] Installing frontier_explorer script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.043s] Installing goal_publisher script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.043s] Installing map_analyzer script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.043s] Installing simple_goal_follower script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.043s] Installing simple_map_analyzer script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.043s] Installing simple_web script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.044s] Installing teleop_control script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.044s] Installing web_control_node script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+[1.044s] writing list of installed files to '/home/sanket/robot_mapping_ws/build/autonomous_explorer/install.log'
+[1.071s] Invoked command in '/home/sanket/robot_mapping_ws/src/autonomous_explorer' returned '0': PYTHONPATH=/home/sanket/robot_mapping_ws/build/autonomous_explorer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/autonomous_explorer build --build-base /home/sanket/robot_mapping_ws/build/autonomous_explorer/build install --record /home/sanket/robot_mapping_ws/build/autonomous_explorer/install.log --single-version-externally-managed install_data

@@ -1,0 +1,35 @@
+running egg_info
+writing ../../build/autonomous_explorer/autonomous_explorer.egg-info/PKG-INFO
+writing dependency_links to ../../build/autonomous_explorer/autonomous_explorer.egg-info/dependency_links.txt
+writing entry points to ../../build/autonomous_explorer/autonomous_explorer.egg-info/entry_points.txt
+writing requirements to ../../build/autonomous_explorer/autonomous_explorer.egg-info/requires.txt
+writing top-level names to ../../build/autonomous_explorer/autonomous_explorer.egg-info/top_level.txt
+reading manifest file '../../build/autonomous_explorer/autonomous_explorer.egg-info/SOURCES.txt'
+writing manifest file '../../build/autonomous_explorer/autonomous_explorer.egg-info/SOURCES.txt'
+running build
+running build_py
+copying autonomous_explorer/simple_map_analyzer.py -> /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer
+copying autonomous_explorer/map_analyzer.py -> /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer
+running install
+running install_lib
+copying /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer/simple_map_analyzer.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer
+copying /home/sanket/robot_mapping_ws/build/autonomous_explorer/build/lib/autonomous_explorer/map_analyzer.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer
+byte-compiling /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/simple_map_analyzer.py to simple_map_analyzer.cpython-310.pyc
+byte-compiling /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer/map_analyzer.py to map_analyzer.cpython-310.pyc
+running install_data
+creating /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/scripts
+copying scripts/web_control_node.py -> /home/sanket/robot_mapping_ws/install/autonomous_explorer/share/autonomous_explorer/scripts
+running install_egg_info
+removing '/home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer-0.0.1-py3.10.egg-info' (and everything under it)
+Copying ../../build/autonomous_explorer/autonomous_explorer.egg-info to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/python3.10/site-packages/autonomous_explorer-0.0.1-py3.10.egg-info
+running install_scripts
+Installing autonomous_explorer_node script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+Installing coverage_explorer script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+Installing goal_publisher script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+Installing map_analyzer script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+Installing simple_goal_follower script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+Installing simple_map_analyzer script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+Installing simple_web script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+Installing teleop_control script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+Installing web_control_node script to /home/sanket/robot_mapping_ws/install/autonomous_explorer/lib/autonomous_explorer
+writing list of installed files to '/home/sanket/robot_mapping_ws/build/autonomous_explorer/install.log'
