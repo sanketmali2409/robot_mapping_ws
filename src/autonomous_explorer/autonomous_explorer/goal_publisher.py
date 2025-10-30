@@ -17,7 +17,7 @@ class GoalPublisher(Node):
         )
         
         self.get_logger().info('Goal Publisher Ready!')
-        self.get_logger().info('click "2D Goal Pose" in RViz to set a goal')
+        self.get_logger().info('Click "2D Goal Pose" in RViz to set a goal')
     
     def goal_callback(self, msg):
         """Receive goal from RViz"""
