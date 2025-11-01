@@ -255,7 +255,7 @@ class WebControlNode(Node):
                     await websocket.send(json.dumps({'type': 'saved_maps', 'maps': []}))
         
         except Exception as e:
-            self.get_logger().error(f'Error handling message: {e}')
+            self.get_logger().error(f'error handling message: {e}')
             await websocket.send(json.dumps({'status': 'error', 'message': str(e)}))
 
 def main(args=None):
