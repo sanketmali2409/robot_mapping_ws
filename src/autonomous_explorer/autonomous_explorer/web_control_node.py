@@ -265,7 +265,7 @@ def main(args=None):
     async def start_server():
         async with websockets.server.serve(node.handle_client, '0.0.0.0', 8765):
             node.get_logger().info('webSocket server started on ws://0.0.0.0:8765')
-            node.get_logger().info('pen the web dashboard to connect')
+            node.get_logger().info('Open the web dashboard to connect')
             await asyncio.Future()
     
     def run_server():
