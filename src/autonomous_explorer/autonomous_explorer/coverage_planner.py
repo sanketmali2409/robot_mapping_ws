@@ -113,6 +113,7 @@ class CoveragePathPlanner(Node):
         
         return waypoints
     
+    
     def send_next_waypoint(self):
         """Send the next waypoint goal"""
         if self.current_waypoint_idx >= len(self.waypoints):
@@ -138,17 +139,22 @@ class CoveragePathPlanner(Node):
             f'Waypoint: ({waypoint["x"]:.2f}, {waypoint["y"]:.2f})'
         )
         
-        # Wait for action server
-        self.nav_client.wait_for_server()
+        if not self.nav_client.wait_for_server(timeout_sec=5.0):
+           self.get_logger().error('Navigation action server not available!')
+           return False
         
-        # Send goal
-        send_goal_future = self.nav_client.send_goal_async(goal_msg)
+        send_goal_future = self.nav_client.send_goal_async(
+        goal_msg,
+        feedback_callback=self.feedback_callback  # Add feedback
+    )
         send_goal_future.add_done_callback(self.goal_response_callback)
-        
+    
         self.goals_sent += 1
         self.current_waypoint_idx += 1
-        
+    
         return True
+
+    
     
     def goal_response_callback(self, future):
         """Handle goal acceptance"""
@@ -162,6 +168,10 @@ class CoveragePathPlanner(Node):
         
         result_future = goal_handle.get_result_async()
         result_future.add_done_callback(self.goal_result_callback)
+
+    def feedback_callback(self, feedback_msg):
+       """Handle navigation feedback"""
+    pass  # Can add distance tracking here if needed    
     
     def goal_result_callback(self, future):
         """Handle goal completion"""

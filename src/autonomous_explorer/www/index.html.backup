@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Control Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        
+        .status {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.2);
+            margin-top: 10px;
+        }
+        
+        .status.connected { background: #10b981; }
+        .status.disconnected { background: #ef4444; }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            padding: 30px;
+        }
+        
+        .control-panel {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 25px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h2 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-success { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; }
+        .btn-danger { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; }
+        .btn-warning { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; }
+        
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        .input-group { margin: 15px 0; }
+        .input-group label { display: block; margin-bottom: 8px; color: #475569; font-weight: 600; }
+        
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        
+        .map-viewer {
+            background: #1e293b;
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 600px;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 560px;
+            background: #0f172a;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #mapCanvas { max-width: 100%; max-height: 100%; border-radius: 8px; }
+        
+        .no-map { color: #64748b; text-align: center; padding: 40px; }
+        
+        .robot-info {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .robot-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .info-item {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .info-value { font-size: 1.3em; font-weight: bold; }
+        
+        .saved-maps {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        
+        .map-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .map-item button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .log-console {
+            background: #0f172a;
+            color: #10b981;
+            font-family: 'Courier New', monospace;
+            padding: 15px;
+            border-radius: 8px;
+            height: 150px;
+            overflow-y: auto;
+            font-size: 0.85em;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Robot Control Dashboard</h1>
+            <div class="status disconnected" id="connectionStatus">Disconnected</div>
+        </div>
+        
+        <div class="main-content">
+            <div class="control-panel">
+                <div class="section">
+                    <h2>📍 Mapping</h2>
+                    <button class="btn btn-primary" id="startMappingBtn" onclick="startMapping()">Start Mapping</button>
+                    <button class="btn btn-danger" id="stopMappingBtn" onclick="stopMapping()" disabled>Stop Mapping</button>
+                    
+                    <div class="input-group">
+                        <label for="mapName">Map Name:</label>
+                        <input type="text" id="mapName" placeholder="e.g., bedroom, kitchen">
+                    </div>
+                    
+                    <button class="btn btn-success" onclick="saveMap()">💾 Save Map</button>
+                </div>
+                
+                <div class="section">
+                    <h2>🗺️ Saved Maps</h2>
+                    <div class="saved-maps" id="savedMapsList">
+                        <div style="text-align: center; color: #64748b; padding: 20px;">No saved maps</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="refreshMapsList()">🔄 Refresh List</button>
+                </div>
+                
+                <div class="section">
+                    <h2>🎯 Navigation</h2>
+                    <div class="input-group">
+                        <label for="targetMap">Select Room:</label>
+                        <select id="targetMap">
+                            <option value="">-- Select a map --</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-warning" onclick="exploreArea()">🔍 Explore Selected Area</button>
+                    <button class="btn btn-danger" onclick="stopRobot()">⏹️ Emergency Stop</button>
+                </div>
+            </div>
+            
+            <div class="map-viewer">
+                <div class="map-container" id="mapContainer">
+                    <div class="no-map">
+                        <h3>No Map Data</h3>
+                        <p>Start mapping to see the robot's view</p>
+                    </div>
+                    <img id="mapCanvas" style="display: none;">
+                </div>
+                
+                <div class="robot-info">
+                    <strong>Robot Status</strong>
+                    <div class="robot-info-grid">
+                        <div class="info-item">
+                            <div>X Position</div>
+                            <div class="info-value" id="posX">0.00</div>
+                        </div>
+                        <div class="info-item">
+                            <div>Y Position</div>
+                            <div class="info-value" id="posY">0.00</div>
+                        </div>
+                        <div class="info-item">
+                            <div>Angle</div>
+                            <div class="info-value" id="posTheta">0.00°</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="log-console" id="logConsole">
+                    <div>[00:00:00] System initialized</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let ws = null;
+        let mappingActive = false;
+        
+        function connectWebSocket() {
+            ws = new WebSocket('ws://localhost:8765');
+            
+            ws.onopen = () => {
+                updateConnectionStatus(true);
+                addLog('Connected to robot control server');
+                refreshMapsList();
+            };
+            
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                handleMessage(data);
+            };
+            
+            ws.onclose = () => {
+                updateConnectionStatus(false);
+                addLog('Disconnected from server');
+                setTimeout(connectWebSocket, 3000);
+            };
+            
+            ws.onerror = (error) => {
+                addLog('Connection error occurred');
+            };
+        }
+        
+        function handleMessage(data) {
+            if (data.type === 'map_update') {
+                updateMapDisplay(data);
+            } else if (data.type === 'pose_update') {
+                updateRobotPose(data.pose);
+            } else if (data.type === 'saved_maps') {
+                displaySavedMaps(data.maps);
+            }
+            
+            if (data.status) {
+                addLog(`Status: ${data.status}`);
+            }
+        }
+        
+        function updateConnectionStatus(connected) {
+            const statusEl = document.getElementById('connectionStatus');
+            statusEl.textContent = connected ? 'Connected' : 'Disconnected';
+            statusEl.className = connected ? 'status connected' : 'status disconnected';
+        }
+        
+        function updateMapDisplay(data) {
+            const canvas = document.getElementById('mapCanvas');
+            const container = document.getElementById('mapContainer');
+            const noMap = container.querySelector('.no-map');
+            
+            if (noMap) noMap.style.display = 'none';
+            
+            canvas.src = 'data:image/png;base64,' + data.image;
+            canvas.style.display = 'block';
+        }
+        
+        function updateRobotPose(pose) {
+            document.getElementById('posX').textContent = pose.x.toFixed(2);
+            document.getElementById('posY').textContent = pose.y.toFixed(2);
+            document.getElementById('posTheta').textContent = (pose.theta * 180 / Math.PI).toFixed(1) + '°';
+        }
+        
+        function displaySavedMaps(maps) {
+            const listEl = document.getElementById('savedMapsList');
+            const selectEl = document.getElementById('targetMap');
+            
+            if (maps.length === 0) {
+                listEl.innerHTML = '<div style="text-align: center; color: #64748b; padding: 20px;">No saved maps</div>';
+                return;
+            }
+            
+            listEl.innerHTML = '';
+            selectEl.innerHTML = '<option value="">-- Select a map --</option>';
+            
+            maps.forEach(map => {
+                const item = document.createElement('div');
+                item.className = 'map-item';
+                item.innerHTML = `<span>${map}</span><button onclick="loadMap('${map}')">Load</button>`;
+                listEl.appendChild(item);
+                
+                const option = document.createElement('option');
+                option.value = map;
+                option.textContent = map;
+                selectEl.appendChild(option);
+            });
+        }
+        
+        function addLog(message) {
+            const logEl = document.getElementById('logConsole');
+            const time = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.textContent = `[${time}] ${message}`;
+            logEl.appendChild(entry);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        function startMapping() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ command: 'start_mapping' }));
+                mappingActive = true;
+                document.getElementById('startMappingBtn').disabled = true;
+                document.getElementById('stopMappingBtn').disabled = false;
+                addLog('Mapping started');
+            }
+        }
+        
+        function stopMapping() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ command: 'stop_mapping' }));
+                mappingActive = false;
+                document.getElementById('startMappingBtn').disabled = false;
+                document.getElementById('stopMappingBtn').disabled = true;
+                addLog('Mapping stopped');
+            }
+        }
+        
+        function saveMap() {
+            const mapName = document.getElementById('mapName').value.trim();
+            if (!mapName) {
+                alert('Please enter a map name');
+                return;
+            }
+            
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ command: 'save_map', name: mapName }));
+                addLog(`Saving map: ${mapName}`);
+                document.getElementById('mapName').value = '';
+                setTimeout(refreshMapsList, 1000);
+            }
+        }
+        
+        function loadMap(mapName) {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ command: 'load_map', name: mapName }));
+                addLog(`Loading map: ${mapName}`);
+            }
+        }
+        
+        function refreshMapsList() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ command: 'get_saved_maps' }));
+            }
+        }
+        
+        function exploreArea() {
+            const mapName = document.getElementById('targetMap').value;
+            if (!mapName) {
+                alert('Please select a room first');
+                return;
+            }
+            
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ command: 'load_map', name: mapName }));
+                setTimeout(() => {
+                    ws.send(JSON.stringify({ command: 'explore_area', area: mapName }));
+                    addLog(`Exploring ${mapName}`);
+                }, 1000);
+            }
+        }
+        
+        function stopRobot() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ command: 'stop_robot' }));
+                addLog('Emergency stop activated!');
+            }
+        }
+        
+        window.onload = () => {
+            connectWebSocket();
+        };
+    </script>
+</body>
+</html>
