@@ -129,7 +129,7 @@ class SimpleWebControl(Node):
     
     def send_goal(self, x, y):
         if not self.nav_client.wait_for_server(timeout_sec=1.0):
-            self.get_logger().warn('Nav2 not available')
+            self.get_logger().warn('nav2 not available')
             return False
         
         goal_msg = NavigateToPose.Goal()
