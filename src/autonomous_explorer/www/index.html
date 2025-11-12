@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robot Control Dashboard</title>
+    <title>🤖 Autonomous Robot Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -11,138 +11,189 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light: #f1f5f9;
+            --white: #ffffff;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
+            color: var(--dark);
         }
 
         .container {
-            background: white;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: var(--white);
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 40px;
-            max-width: 600px;
-            width: 100%;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 2em;
-        }
-
-        .status {
-            text-align: center;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            font-weight: bold;
-        }
-
-        .status.connected {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .status.disconnected {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        .position-display {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .position-display h3 {
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .coordinates {
-            font-size: 1.5em;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .control-section {
-            margin-bottom: 30px;
-        }
-
-        .control-section h3 {
-            color: #666;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .coverage-controls {
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             display: flex;
-            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .status-badge {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9em;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .status-badge.connected {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-badge.disconnected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-badge.connected .status-dot {
+            background: var(--success);
+        }
+
+        .status-badge.disconnected .status-dot {
+            background: var(--danger);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
             margin-bottom: 20px;
         }
 
-        .coverage-controls button {
-            flex: 1;
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+
+        .card-icon.blue { background: #dbeafe; }
+        .card-icon.green { background: #d1fae5; }
+        .card-icon.purple { background: #e9d5ff; }
+        .card-icon.orange { background: #fed7aa; }
+
+        .card-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat-item {
+            background: var(--light);
             padding: 15px;
-            font-size: 1.1em;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: bold;
+            border-radius: 12px;
+            text-align: center;
         }
 
-        .start-btn {
-            background: #28a745;
-            color: white;
+        .stat-label {
+            font-size: 0.8em;
+            color: var(--gray);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .start-btn:hover {
-            background: #218838;
-            transform: translateY(-2px);
-        }
-
-        .stop-btn {
-            background: #dc3545;
-            color: white;
-        }
-
-        .stop-btn:hover {
-            background: #c82333;
-            transform: translateY(-2px);
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary);
         }
 
         .controls-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-top: 15px;
         }
 
         .control-btn {
             padding: 20px;
-            font-size: 1.2em;
             border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            border-radius: 12px;
+            font-size: 1.5em;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: bold;
+            background: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
         }
 
         .control-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
         }
 
         .control-btn:active {
@@ -151,97 +202,428 @@
 
         .control-btn.empty {
             background: transparent;
+            box-shadow: none;
             cursor: default;
         }
 
         .control-btn.empty:hover {
             transform: none;
-            box-shadow: none;
         }
 
-        .stop-btn-grid {
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        .control-btn.stop {
+            background: var(--danger);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
         }
 
-        .log {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            max-height: 200px;
+        .control-btn.stop:hover {
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .action-btn.primary {
+            background: var(--success);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .action-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .action-btn.secondary {
+            background: var(--danger);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .action-btn.secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+        }
+
+        .log-container {
+            background: var(--dark);
+            border-radius: 12px;
+            padding: 20px;
+            max-height: 300px;
             overflow-y: auto;
-            font-family: monospace;
-            font-size: 0.9em;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.85em;
         }
 
         .log-entry {
-            padding: 5px;
-            border-bottom: 1px solid #dee2e6;
+            padding: 8px 0;
+            color: #94a3b8;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
         }
 
         .log-entry:last-child {
             border-bottom: none;
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
+        .log-time {
+            color: var(--warning);
+            font-weight: 600;
+            min-width: 70px;
+        }
+
+        .log-message {
+            flex: 1;
+        }
+
+        .log-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .log-container::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+
+        .log-container::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+
+        .map-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .map-btn {
+            padding: 12px;
+            border: 2px solid var(--light);
+            border-radius: 12px;
+            background: var(--white);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .map-btn:hover {
+            border-color: var(--primary);
+            background: #ede9fe;
+            transform: translateY(-2px);
+        }
+
+        .map-btn.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .speed-control {
+            margin-top: 15px;
+        }
+
+        .speed-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: var(--light);
+            outline: none;
+            margin-top: 10px;
+        }
+
+        .speed-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.5);
+        }
+
+        .speed-label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.85em;
+            color: var(--gray);
+        }
+
+        .info-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-banner-icon {
+            font-size: 2em;
+        }
+
+        .info-banner-text {
+            flex: 1;
+        }
+
+        .info-banner-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .info-banner-desc {
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
             }
 
-            h1 {
-                font-size: 1.5em;
+            .grid {
+                grid-template-columns: 1fr;
             }
 
-            .control-btn {
-                padding: 15px;
-                font-size: 1em;
+            .controls-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .action-buttons {
+                grid-template-columns: 1fr;
             }
         }
+
+        .keyboard-hint {
+            margin-top: 15px;
+            padding: 12px;
+            background: var(--light);
+            border-radius: 8px;
+            font-size: 0.85em;
+            color: var(--gray);
+            text-align: center;
+        }
+
+        .keyboard-hint strong {
+            color: var(--primary);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🤖 Robot Control Dashboard</h1>
-        
-        <div id="status" class="status disconnected">
-            ⚠️ Disconnected
-        </div>
-
-        <div class="position-display">
-            <h3>Current Position</h3>
-            <div class="coordinates">
-                X: <span id="posX">0.00</span> m | Y: <span id="posY">0.00</span> m
+        <!-- Header -->
+        <div class="header">
+            <h1>
+                🤖 Autonomous Robot Control
+            </h1>
+            <div id="status" class="status-badge disconnected">
+                <span class="status-dot"></span>
+                Disconnected
             </div>
         </div>
 
-        <div class="control-section">
-            <h3>Autonomous Coverage</h3>
-            <div class="coverage-controls">
-                <button class="start-btn" onclick="startCoverage()">▶️ Start Coverage</button>
-                <button class="stop-btn" onclick="stopCoverage()">⏹️ Stop Coverage</button>
+        <!-- Main Grid -->
+        <div class="grid">
+            <!-- Position Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon blue">📍</div>
+                    <div class="card-title">Robot Position</div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">X Position</div>
+                        <div class="stat-value"><span id="posX">0.00</span> m</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Y Position</div>
+                        <div class="stat-value"><span id="posY">0.00</span> m</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Speed</div>
+                        <div class="stat-value"><span id="speed">0.00</span> m/s</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Distance</div>
+                        <div class="stat-value"><span id="distance">0.0</span> m</div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="control-section">
-            <h3>Manual Control</h3>
-            <div class="controls-grid">
-                <div class="control-btn empty"></div>
-                <button class="control-btn" onclick="sendCommand('forward')">⬆️ Forward</button>
-                <div class="control-btn empty"></div>
+            <!-- Manual Control Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon green">🎮</div>
+                    <div class="card-title">Manual Control</div>
+                </div>
+                <div class="controls-grid">
+                    <div class="control-btn empty"></div>
+                    <button class="control-btn" onclick="sendCommand('forward')" title="Forward (↑ or W)">
+                        ⬆️
+                    </button>
+                    <div class="control-btn empty"></div>
+                    
+                    <button class="control-btn" onclick="sendCommand('left')" title="Turn Left (← or A)">
+                        ⬅️
+                    </button>
+                    <button class="control-btn stop" onclick="sendCommand('stop')" title="Stop (Space)">
+                        ⏹️
+                    </button>
+                    <button class="control-btn" onclick="sendCommand('right')" title="Turn Right (→ or D)">
+                        ➡️
+                    </button>
+                    
+                    <div class="control-btn empty"></div>
+                    <button class="control-btn" onclick="sendCommand('backward')" title="Backward (↓ or S)">
+                        ⬇️
+                    </button>
+                    <div class="control-btn empty"></div>
+                </div>
+                <div class="keyboard-hint">
+                    💡 <strong>Keyboard:</strong> Arrow keys or WASD to move, Space to stop
+                </div>
+            </div>
+
+            <!-- Autonomous Control Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon purple">🤖</div>
+                    <div class="card-title">Autonomous Mode</div>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-btn primary" onclick="startCoverage()">
+                        ▶️ Start Coverage
+                    </button>
+                    <button class="action-btn secondary" onclick="stopCoverage()">
+                        ⏹️ Stop Mission
+                    </button>
+                </div>
                 
-                <button class="control-btn" onclick="sendCommand('left')">⬅️ Left</button>
-                <button class="control-btn stop-btn-grid" onclick="sendCommand('stop')">⏹️ Stop</button>
-                <button class="control-btn" onclick="sendCommand('right')">➡️ Right</button>
+                <div class="speed-control">
+                    <div class="stat-label">Robot Speed</div>
+                    <input type="range" class="speed-slider" id="speedSlider" 
+                           min="0" max="100" value="50" 
+                           oninput="updateSpeed(this.value)">
+                    <div class="speed-label">
+                        <span>Slow</span>
+                        <span id="speedPercent">50%</span>
+                        <span>Fast</span>
+                    </div>
+                </div>
+
+                <div class="stat-item" style="margin-top: 15px;">
+                    <div class="stat-label">Mission Progress</div>
+                    <div class="stat-value"><span id="progress">0</span>%</div>
+                </div>
+            </div>
+
+            <!-- Map Selection Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon orange">🗺️</div>
+                    <div class="card-title">Map Selection</div>
+                </div>
+                <div class="map-selector">
+                    <button class="map-btn active" onclick="selectMap('bedroom')">
+                        🛏️ Bedroom
+                    </button>
+                    <button class="map-btn" onclick="selectMap('kitchen')">
+                        🍳 Kitchen
+                    </button>
+                    <button class="map-btn" onclick="selectMap('office')">
+                        💼 Office
+                    </button>
+                    <button class="map-btn" onclick="selectMap('custom')">
+                        ⭐ Custom
+                    </button>
+                </div>
                 
-                <div class="control-btn empty"></div>
-                <button class="control-btn" onclick="sendCommand('backward')">⬇️ Backward</button>
-                <div class="control-btn empty"></div>
+                <div class="stats" style="margin-top: 15px;">
+                    <div class="stat-item">
+                        <div class="stat-label">Map Area</div>
+                        <div class="stat-value" style="font-size: 1.3em;">
+                            <span id="mapArea">97.0</span> m²
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Explored</div>
+                        <div class="stat-value" style="font-size: 1.3em;">
+                            <span id="explored">91</span>%
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="control-section">
-            <h3>Activity Log</h3>
-            <div id="log" class="log">
-                <div class="log-entry">Waiting for connection...</div>
+        <!-- Activity Log -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon blue">📋</div>
+                <div class="card-title">Activity Log</div>
+            </div>
+            <div class="log-container" id="log">
+                <div class="log-entry">
+                    <span class="log-time">00:00:00</span>
+                    <span class="log-message">System initialized. Waiting for connection...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Banner -->
+        <div class="info-banner">
+            <div class="info-banner-icon">💡</div>
+            <div class="info-banner-text">
+                <div class="info-banner-title">Pro Tip</div>
+                <div class="info-banner-desc">
+                    Use keyboard shortcuts for faster control! Arrow keys or WASD for movement, Space to stop.
+                </div>
             </div>
         </div>
     </div>
@@ -249,119 +631,204 @@
     <script>
         let ws = null;
         let reconnectInterval = null;
+        let totalDistance = 0;
+        let lastPos = {x: 0, y: 0};
+        let selectedMap = 'bedroom';
 
         function connect() {
             ws = new WebSocket('ws://localhost:8765');
             
             ws.onopen = () => {
-                document.getElementById('status').className = 'status connected';
-                document.getElementById('status').textContent = '✅ Connected';
-                addLog('Connected to robot');
-                if (reconnectInterval) {
-                    clearInterval(reconnectInterval);
-                    reconnectInterval = null;
-                }
+                updateStatus(true);
+                addLog('Connected to robot successfully');
             };
             
             ws.onmessage = (event) => {
                 const data = JSON.parse(event.data);
                 if (data.type === 'position') {
-                    document.getElementById('posX').textContent = data.x.toFixed(2);
-                    document.getElementById('posY').textContent = data.y.toFixed(2);
+                    updatePosition(data.x, data.y);
+                } else if (data.type === 'progress') {
+                    document.getElementById('progress').textContent = data.value.toFixed(0);
+                } else if (data.type === 'status') {
+                    addLog(data.message);
                 }
             };
             
             ws.onclose = () => {
-                document.getElementById('status').className = 'status disconnected';
-                document.getElementById('status').textContent = '⚠️ Disconnected';
-                addLog('Disconnected from robot');
+                updateStatus(false);
+                addLog('Connection lost. Attempting to reconnect...');
                 
                 if (!reconnectInterval) {
                     reconnectInterval = setInterval(() => {
-                        addLog('Attempting to reconnect...');
                         connect();
                     }, 3000);
                 }
             };
             
-            ws.onerror = (error) => {
-                addLog('Connection error');
+            ws.onerror = () => {
+                addLog('Connection error occurred');
             };
+        }
+
+        function updateStatus(connected) {
+            const statusEl = document.getElementById('status');
+            if (connected) {
+                statusEl.className = 'status-badge connected';
+                statusEl.innerHTML = '<span class="status-dot"></span>Connected';
+                if (reconnectInterval) {
+                    clearInterval(reconnectInterval);
+                    reconnectInterval = null;
+                }
+            } else {
+                statusEl.className = 'status-badge disconnected';
+                statusEl.innerHTML = '<span class="status-dot"></span>Disconnected';
+            }
+        }
+
+        function updatePosition(x, y) {
+            document.getElementById('posX').textContent = x.toFixed(2);
+            document.getElementById('posY').textContent = y.toFixed(2);
+            
+            // Calculate distance traveled
+            const dx = x - lastPos.x;
+            const dy = y - lastPos.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist > 0.01) { // Only count significant movement
+                totalDistance += dist;
+                document.getElementById('distance').textContent = totalDistance.toFixed(1);
+                
+                // Calculate speed (rough estimate)
+                const speed = dist * 20; // Assuming 20Hz update rate
+                document.getElementById('speed').textContent = speed.toFixed(2);
+            }
+            
+            lastPos = {x, y};
         }
 
         function sendCommand(command) {
             if (ws && ws.readyState === WebSocket.OPEN) {
                 ws.send(JSON.stringify({type: 'command', command: command}));
-                addLog(`Sent: ${command}`);
+                addLog(`Command sent: ${command}`);
             } else {
-                addLog('Error: Not connected');
+                addLog('⚠️ Not connected to robot', 'warning');
             }
         }
 
         function startCoverage() {
             if (ws && ws.readyState === WebSocket.OPEN) {
-                ws.send(JSON.stringify({type: 'coverage', action: 'start'}));
-                addLog('Started autonomous coverage');
+                ws.send(JSON.stringify({
+                    type: 'coverage', 
+                    action: 'start',
+                    map: selectedMap
+                }));
+                addLog(`🚀 Started autonomous coverage on ${selectedMap} map`);
             } else {
-                addLog('Error: Not connected');
+                addLog('⚠️ Not connected to robot', 'warning');
             }
         }
 
         function stopCoverage() {
             if (ws && ws.readyState === WebSocket.OPEN) {
                 ws.send(JSON.stringify({type: 'coverage', action: 'stop'}));
-                addLog('Stopped autonomous coverage');
+                addLog('⏹️ Stopped autonomous mission');
             } else {
-                addLog('Error: Not connected');
+                addLog('⚠️ Not connected to robot', 'warning');
             }
         }
 
-        function addLog(message) {
+        function selectMap(mapName) {
+            selectedMap = mapName;
+            
+            // Update button states
+            document.querySelectorAll('.map-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update map stats (mock data)
+            const mapData = {
+                'bedroom': {area: 97.0, explored: 91},
+                'kitchen': {area: 85.5, explored: 88},
+                'office': {area: 120.3, explored: 94},
+                'custom': {area: 0, explored: 0}
+            };
+            
+            const data = mapData[mapName];
+            document.getElementById('mapArea').textContent = data.area.toFixed(1);
+            document.getElementById('explored').textContent = data.explored;
+            
+            addLog(`📍 Selected ${mapName} map (${data.area}m²)`);
+        }
+
+        function updateSpeed(value) {
+            document.getElementById('speedPercent').textContent = value + '%';
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'speed',
+                    value: value / 100
+                }));
+            }
+        }
+
+        function addLog(message, type = 'info') {
             const log = document.getElementById('log');
             const entry = document.createElement('div');
             entry.className = 'log-entry';
+            
             const time = new Date().toLocaleTimeString();
-            entry.textContent = `[${time}] ${message}`;
+            entry.innerHTML = `
+                <span class="log-time">${time}</span>
+                <span class="log-message">${message}</span>
+            `;
+            
             log.insertBefore(entry, log.firstChild);
             
-            // Keep only last 20 entries
-            while (log.children.length > 20) {
+            // Keep only last 50 entries
+            while (log.children.length > 50) {
                 log.removeChild(log.lastChild);
             }
         }
 
         // Keyboard controls
         document.addEventListener('keydown', (e) => {
-            switch(e.key) {
-                case 'ArrowUp':
+            const key = e.key.toLowerCase();
+            let command = null;
+            
+            switch(key) {
+                case 'arrowup':
                 case 'w':
-                    sendCommand('forward');
-                    e.preventDefault();
+                    command = 'forward';
                     break;
-                case 'ArrowDown':
+                case 'arrowdown':
                 case 's':
-                    sendCommand('backward');
-                    e.preventDefault();
+                    command = 'backward';
                     break;
-                case 'ArrowLeft':
+                case 'arrowleft':
                 case 'a':
-                    sendCommand('left');
-                    e.preventDefault();
+                    command = 'left';
                     break;
-                case 'ArrowRight':
+                case 'arrowright':
                 case 'd':
-                    sendCommand('right');
-                    e.preventDefault();
+                    command = 'right';
                     break;
                 case ' ':
-                    sendCommand('stop');
-                    e.preventDefault();
+                    command = 'stop';
                     break;
+            }
+            
+            if (command) {
+                sendCommand(command);
+                e.preventDefault();
             }
         });
 
         // Connect on load
         connect();
+
+        // Update time display
+        setInterval(() => {
+            // Could update elapsed time, battery, etc.
+        }, 1000);
     </script>
 </body>
 </html>
