@@ -54,7 +54,7 @@ class SimpleGoalFollower(Node):
         
         # Check if goal reached
         if distance < self.goal_tolerance:
-            self.get_logger().info(f'Goal reached! Distance: {distance:.2f}m')
+            self.get_logger().info(f'goal reached! Distance: {distance:.2f}m')
             self.stop_robot()
             self.current_goal = None
             return
